@@ -1,0 +1,58 @@
+class QueueArray{
+    private int[] Q;  // an array for queue
+    private int len;   // fixed array Length
+    private int start;   // start ptr
+    private int end;      //end ptr
+    private int size;    // curSize of Queue
+    
+    public QueueArray(int len){        // constructor for initializing the array   
+        this.len=len;
+        Q=new int[len];
+        start=-1;             //to -1
+        end=-1;               // to -1
+        size=0;
+    }
+    public void enqueue(int x){        
+        if(size>=len){                            // if CurSize increments to a outer bound
+            System.out.print("Queue Overflow");
+            return;
+        }
+        if(size==0){                        // add 1st element
+            start=0;
+            end=0;
+        }
+        else{
+            end=(end+1)%len;                         // circular queue updation, end can updated in circular(till exceeding len)
+        }
+        Q[end]=x;
+        size++;
+        
+    }
+    public int dequeue(){
+        if(size==0){                                    
+            System.out.print("Queue is empty");
+            return -1;
+        }
+        int el=Q[start];                                 // incase to return
+        if(size==1){        // destroy queue
+            start=-1; 
+            end=-1;
+        }
+        else{
+            start=(start+1)%len;                    // circular updation if end already updated circularly
+        }
+        size-=1;
+        return el;
+    }
+    public int peek(){
+        if(size==0){
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+        return Q[start];                                  // top of queue
+    }
+    public int size(){
+        return size;
+    }
+    
+}
