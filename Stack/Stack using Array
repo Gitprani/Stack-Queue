@@ -1,0 +1,38 @@
+class StackArray{
+    private int[] st;  // an array for stack
+    private int top;   // an top pointer
+    private int len;   // fixed length for array(st)
+    
+    
+    public StackArray(int len){        // constructor for initializing the array   
+        this.len=len;
+        st=new int[len];
+        top=-1
+    }
+    public void push(int x){        
+        if(top>=len-1){                              // if top index reaches out of bounce
+            System.out.println("Stack Overflow");
+            return;
+        }
+        top=top+1;
+        st[top]=x;
+    }
+    public void pop(){
+        if(top==-1){                                    // still in -1th index
+            System.out.println("Stack is Underflow");
+            return;
+        }
+        top=top-1;
+    }
+    public int peek(){ 
+        if(top==-1){                                   // still in -1th index
+            System.out.println("Stack is Empty");
+            return -1;
+        }
+        return st[top];
+    }
+    public int size(){
+        return top+1;
+    }
+    
+}
