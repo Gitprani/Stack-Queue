@@ -1,0 +1,64 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;                       // class for LL and creating a new Node by calling Node()
+    
+    Node(int x){
+        this.data=x;
+        next=null;
+    }
+}
+class StackLL{
+    Node top;                         // a top node
+    int size;                         // size of LL
+    
+    public StackLL(){                   // for initializing LL with a node(no arguments since no fixed length)
+        top=null;
+        size=0; 
+    }
+    public void push(int x){
+        Node temp=new Node(x);           // create new Node
+        temp.next=top;                   // as top will be there once obj created(update the pointer to next)
+        top=temp;                   // update the top
+        size++;        // increase size
+    }
+    public int pop(){
+        if(size==0){
+            System.out.println("Stack is Empty");
+            return -1;
+        }
+        int popped=top.data;          
+        Node temp=top;                      // assign top as temp
+        top=top.next;                          // update the top
+        temp=null;                    // delete temp by "null"
+        size--;          // dec size
+        return popped;
+    }
+    public int peek(){
+        if(size==0){
+            System.out.println("Stack is Empty");
+            return -1;
+        }
+        return top.data;
+    }
+    public int size(){
+        return size;
+    }
+    public boolean isEmpty(){
+        return (size==0);
+    }
+}
+
+class Main{
+    public static void main(String[] args){
+        StackLL obj=new StackLL();
+        
+        obj.push(4);
+        obj.push(2);
+        obj.push(6);
+        System.out.println(obj.peek());
+        System.out.println(obj.pop());
+        obj.push(7);
+        System.out.println(obj.size());
+    }
+}
