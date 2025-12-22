@@ -4,7 +4,7 @@ class MyQueue {
     public MyQueue() {
         s1=new Stack<>();
         s2=new Stack<>();
-    }
+    }                                                                                                          // T.c=O(2N), O(1),O(1),O(1), S.c=O(2n)
     
     public void push(int x) {
         while(!s1.isEmpty()){                                  // push s1 --> s2 before adding
