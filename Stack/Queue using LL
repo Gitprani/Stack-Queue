@@ -1,0 +1,76 @@
+import java.util.*;
+class Node{
+    int data;
+    Node next;                       // class for LL and creating a new Node by calling Node()
+    
+    Node(int x){
+        this.data=x;
+        next=null;
+    }
+}
+class QueueLL{
+    Node start;                       // a start Node
+    Node end;                         // a end Node
+    int size;                         // size of LL
+    
+    public QueueLL(){                   // for initializing LL with a node(no arguments since no fixed length)
+        start=null;
+        end=null;
+        size=0; 
+    }
+    public void enqueue(int x){
+        Node temp=new Node(x);           // create new Node
+        if(size==0){
+        start=temp;                      // for 1st element
+        end=temp;
+        }
+        else{
+            end.next=temp;              // from 2nd; point the end(old tmep) to new temp
+            end=temp;               // update end
+        }
+        size++;        // increase size
+    }
+    public int dequeue(){
+        if(start==null){
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+        int popped=start.data;          
+        if(start==end){               // for single node deletion(destroying queue)
+            start=null;
+            end=null;
+        }
+        Node temp=start;                      // assign start as temp
+        start=start.next;                          // update the start
+        temp=null;                    // delete temp by "null"
+        size--;          // dec size
+        return popped;
+    }
+    public int peek(){
+        if(size==0){
+            System.out.println("Queue is Empty");
+            return -1;
+        }
+        return start.data;
+    }
+    public int size(){
+        return size;
+    }
+    public boolean isEmpty(){
+        return (size==0);
+    }
+}
+
+class Main{
+    public static void main(String[] args){
+        QueueLL obj=new QueueLL();
+        
+        obj.enqueue(7);
+        obj.enqueue(2);
+        obj.enqueue(3);
+        System.out.println(obj.peek());
+        System.out.println(obj.dequeue());
+        System.out.println(obj.dequeue());
+        System.out.println(obj.size());
+    }
+}
