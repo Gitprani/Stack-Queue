@@ -5,7 +5,7 @@ class MyStack {
     }
     
     public void push(int x) {
-        int s=q.size();
+        int s=q.size();                                                                                // T.c=O(N), O(1),O(1),O(1), S.c=O(n)
         q.add(x);
         for(int i=1;i<=s;i++){
             q.add(q.poll());                       //poll() removes first el(head) ad return it
