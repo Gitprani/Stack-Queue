@@ -1,0 +1,40 @@
+class MyQueue {
+        Stack<Integer> s1;
+        Stack<Integer> s2;
+    public MyQueue() {
+        s1=new Stack<>();
+        s2=new Stack<>();
+    }
+     
+    public void push(int x) {
+        s1.push(x);                                                                           // T.C=O(1)
+    }
+    
+    public int pop() {
+        if(!s2.isEmpty()){                                                                      // T.C=O(n)  {occasional(else) }
+            return s2.pop();                     // if(s2.isEmpty()){
+        }                                        //   while()     
+        else{                                    //  } return s2.pop()
+            while(!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+        }
+        return s2.pop();
+    }
+    
+    public int peek() {                                                                         // T.C=O(n)
+        if(!s2.isEmpty()){
+            return s2.peek();
+        }
+        else{
+            while(!s1.isEmpty()){
+                s2.push(s1.pop());
+            }
+        }
+        return s2.peek();
+    }                                                             //S.C = O(2n)
+    
+    public boolean empty() {
+        return (s1.isEmpty()) && (s2.isEmpty());
+    }
+}
