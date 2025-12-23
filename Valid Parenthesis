@@ -1,0 +1,23 @@
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> st=new Stack<>();
+        for(char ch:s.toCharArray()){                                      // break into char
+            if(ch=='(' || ch=='[' || ch=='{'){
+                st.push(ch);                                         // just push all openings                                                                                 C=O(n),O(n)
+            }
+            else{
+                if(st.isEmpty()){                                 // if no openings, then straight away false
+                    return false;
+                }
+                char c=st.pop();                                                                    // pop the added opening(LIFO logic)
+                if((ch==')' && c=='(') || (ch==']' && c=='[') || (ch=='}' && c=='{')){
+                    continue;                                                             // if valid, just go on with next iteration, goes to for loop for new ch (new ch as well as  c)
+                }
+                else{
+                    return false;                                                          // if no matching
+                }
+            }
+        }
+        return st.isEmpty();                     // at last empty stack means true
+    }
+}
